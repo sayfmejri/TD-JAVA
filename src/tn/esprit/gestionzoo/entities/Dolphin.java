@@ -1,10 +1,10 @@
 package tn.esprit.gestionzoo.entities;
 
 public class Dolphin extends Aquatic {
-    protected float swimmingSpeed;
+    private float swimmingSpeed;
 
-    public Dolphin(String habitat, float swimmingSpeed) {
-        super(habitat);
+    public Dolphin(String habitat, String name, int age, float swimmingSpeed) {
+        super(habitat, name, age);
         setSwimmingSpeed(swimmingSpeed);
     }
 
@@ -15,13 +15,18 @@ public class Dolphin extends Aquatic {
             throw new IllegalArgumentException("La vitesse de nage ne peut pas être négative.");
         }
     }
-    @Override
-    public String toString() {
-        return "Dolphin [Habitat=" + habitat + ", Swimming Speed=" + swimmingSpeed + " km/h]";
+
+    public float getSwimmingSpeed() {
+        return swimmingSpeed;
     }
+
     @Override
     public void swim() {
         System.out.println("This dolphin is swimming.");
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ", Swimming Speed=" + swimmingSpeed + " km/h";
+    }
 }

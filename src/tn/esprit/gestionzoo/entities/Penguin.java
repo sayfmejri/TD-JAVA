@@ -1,10 +1,10 @@
 package tn.esprit.gestionzoo.entities;
 
 public class Penguin extends Aquatic {
-    protected float swimmingDepth;
+    private float swimmingDepth;
 
-    public Penguin(String habitat, float swimmingDepth) {
-        super(habitat);
+    public Penguin(String habitat, String name, int age, float swimmingDepth) {
+        super(habitat, name, age);
         setSwimmingDepth(swimmingDepth);
     }
 
@@ -15,13 +15,18 @@ public class Penguin extends Aquatic {
             throw new IllegalArgumentException("La profondeur de nage ne peut pas être négative.");
         }
     }
-    @Override
-    public String toString() {
-        return "Penguin [Habitat=" + habitat + ", Swimming Depth=" + swimmingDepth + " meters]";
+
+    public float getSwimmingDepth() {
+        return swimmingDepth;
     }
+
     @Override
     public void swim() {
         System.out.println("This penguin is swimming.");
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ", Swimming Depth=" + swimmingDepth + " meters";
+    }
 }
