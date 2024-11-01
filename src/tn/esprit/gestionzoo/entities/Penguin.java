@@ -1,27 +1,21 @@
 package tn.esprit.gestionzoo.entities;
 
-public class Penguin extends Aquatic {
-    protected float swimmingDepth;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
 
-    public Penguin(String habitat, float swimmingDepth) {
-        super(habitat);
-        setSwimmingDepth(swimmingDepth);
+public class Penguin extends Animal {
+    private float swimmingDepth;
+
+    public Penguin(String habitat, String name, int age, float swimmingDepth) throws InvalidAgeException {
+        super(name, age);
+        this.swimmingDepth = swimmingDepth;
     }
 
-    public void setSwimmingDepth(float swimmingDepth) {
-        if (swimmingDepth >= 0) {
-            this.swimmingDepth = swimmingDepth;
-        } else {
-            throw new IllegalArgumentException("La profondeur de nage ne peut pas être négative.");
-        }
-    }
     @Override
     public String toString() {
-        return "Penguin [Habitat=" + habitat + ", Swimming Depth=" + swimmingDepth + " meters]";
+        return super.toString() + ", Swimming Depth=" + swimmingDepth + " meters";
     }
-    @Override
+
     public void swim() {
         System.out.println("This penguin is swimming.");
     }
-
 }
