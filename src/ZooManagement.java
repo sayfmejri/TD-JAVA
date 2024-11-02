@@ -1,26 +1,31 @@
-import java.util.Scanner;
+package tn.esprit.gestionzoo.main;
+
+import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.Dolphin;
+import tn.esprit.gestionzoo.entities.Penguin;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
 
 public class ZooManagement {
     public static void main(String[] args) {
-        int nbrCages = 20;
-        String zooName = "my zoo";
-        System.out.println(zooName + " comporte " + nbrCages + " cages");
+        Zoo myZoo = new Zoo("Aquatic World", "Tunis");
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Entrez le nom du zoo : ");
-        zooName = scanner.nextLine();
+        try {
+            Dolphin dolphin1 = new Dolphin("Sea", "Dolphin1", 5, 30.0f);
+            Penguin penguin1 = new Penguin("Arctic", "Penguin1", 4, 150.0f);
+            Penguin penguin2 = new Penguin("Arctic", "Penguin2", 3, 200.0f);
+            Penguin penguin3 = new Penguin("Arctic", "Penguin3", 2, 100.0f);
 
-        System.out.print("Entrez le nombre de cages : ");
-        nbrCages = scanner.nextInt();
-        System.out.println(zooName + " comporte " + nbrCages + " cages");
+            // Adding animals to the zoo and catching potential exceptions
+            myZoo.addAnimal(dolphin1);
+            myZoo.addAnimal(penguin1);
+            myZoo.addAnimal(penguin2);
+            myZoo.addAnimal(penguin3); // This should throw ZooFullException
 
-        Animal lion = new Animal("Felidae", "Lion", 5, true);
-        Zoo myZoo = new Zoo(zooName, "Paris", nbrCages);
-        System.out.println(myZoo.name + " est situé à " + myZoo.city + " et comporte " + myZoo.nbrCages + " cages.");
-
-        Animal tiger = new Animal("Felidae", "Tiger", 3, true);
-
-        myZoo.displayZoo();
-        System.out.println(myZoo);
+        } catch (ZooFullException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        } catch (InvalidAgeException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
     }
 }
